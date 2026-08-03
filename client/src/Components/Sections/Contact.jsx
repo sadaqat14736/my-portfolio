@@ -2,7 +2,15 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { personalDetails } from "../../Constants/data";
 import axios from "axios";
-import { fadeIn, slideLeft, slideRight, staggerContainer, staggerItem, hoverButton, tapButton } from "../../animations";
+import {
+  fadeIn,
+  slideLeft,
+  slideRight,
+  staggerContainer,
+  staggerItem,
+  hoverButton,
+  tapButton,
+} from "../../animations";
 
 const Contact = () => {
   const [loading, setLoading] = useState(false);
@@ -24,7 +32,7 @@ const Contact = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/send-email",
+        "https://my-portfolio-production-323f.up.railway.app/api/send-email",
         formData,
       );
 
@@ -52,16 +60,25 @@ const Contact = () => {
     >
       {/* Left - Info */}
       <motion.div variants={slideLeft}>
-        <motion.h2 className="font-headline-lg text-headline-lg text-on-surface mb-4" variants={staggerItem}>
+        <motion.h2
+          className="font-headline-lg text-headline-lg text-on-surface mb-4"
+          variants={staggerItem}
+        >
           Let's build the <br />
           <span className="text-secondary">next standard.</span>
         </motion.h2>
-        <motion.p className="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-md" variants={staggerItem}>
+        <motion.p
+          className="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-md"
+          variants={staggerItem}
+        >
           Available for internships, freelance projects, and meaningful
           collaborations.
         </motion.p>
         <div className="space-y-6">
-          <motion.div className="flex items-center gap-4" variants={staggerItem}>
+          <motion.div
+            className="flex items-center gap-4"
+            variants={staggerItem}
+          >
             <div className="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center border border-white/5">
               <span className="material-symbols-outlined text-primary">
                 mail
@@ -76,7 +93,10 @@ const Contact = () => {
               </p>
             </div>
           </motion.div>
-          <motion.div className="flex items-center gap-4" variants={staggerItem}>
+          <motion.div
+            className="flex items-center gap-4"
+            variants={staggerItem}
+          >
             <div className="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center border border-white/5">
               <span className="material-symbols-outlined text-secondary">
                 share_location
@@ -99,7 +119,11 @@ const Contact = () => {
         className="glass-card p-8 rounded-2xl border border-white/10 shadow-2xl"
         variants={slideRight}
       >
-        <motion.form onSubmit={handleSubmit} className="space-y-6" variants={staggerContainer}>
+        <motion.form
+          onSubmit={handleSubmit}
+          className="space-y-6"
+          variants={staggerContainer}
+        >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <motion.div className="space-y-2" variants={staggerItem}>
               <label className="font-label-sm text-label-sm text-on-surface-variant">

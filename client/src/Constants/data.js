@@ -50,22 +50,22 @@ export const techStackCategories = [
     ],
   },
   {
-  category: "Tools",
-  icon: "build",
-  color: "border-t-white/20",
-  textColor: "text-on-surface",
-  items: [
-    { label: "GitHub", icon: "code" },
-    { label: "Vercel", icon: "cloud_upload" },
-  ],
-},
+    category: "Tools",
+    icon: "build",
+    color: "border-t-white/20",
+    textColor: "text-on-surface",
+    items: [
+      { label: "GitHub", icon: "code" },
+      { label: "Vercel", icon: "cloud_upload" },
+    ],
+  },
 ];
 
 export const projects = [
   {
     title: "Routine-Tracker",
     tags: ["React", "Firebase"],
-    desc: "Next-gen enterprise CRM with predictive analytics and real-time data sync.",
+    desc: "A modern habit and discipline tracking web app that helps users manage daily routines, monitor progress, and visualize monthly and yearly performance with a responsive, user-friendly interface.",
     img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBWUO1YO1yuBiWuuYtj39glZJevcPbsDMH9gJWB7qnJP-NgOxx0vCE-1KZthTWKlznjgQkZFYOCYYawbuplkh6KbR90Bqt3ZfiEKQWkNq3BmHPgXi4OK9Iy5eaGM6qbNan2-lnA-PyRoiVUYCSxPNpWQaDjlx5HB1bhdBKc7MUnv8QqRks8voV3-wC-rDF2Jf5lWaBhr02zebwGU6tB1eRL8XZy6co0fHRSHAMdhTFSm-DFv3srjl4DFLwFjcfVE4jtQ8rOTljjKD-t",
     hostedUrl: "https://routine-tracker-o64y1bazc-sadaqat-alis-projects-bc8ad5b2.vercel.app",
     repoUrl: "https://github.com/sadaqat14736/routine-tracker.git",
@@ -79,12 +79,12 @@ export const projects = [
     repoUrl: "https://github.com/sadaqat14736/obsidian-shop",
   },
   {
-    title: "Syncro Board",
-    tags: ["Socket.io", "Express", "React"],
+    title: "Eleken",
+    tags: ["HTML", "CSS", "JavaScript"],
     desc: "Real-time collaboration suite for distributed engineering teams.",
     img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBz86T9gl0I2ZpLgfaw-RPJEd-QS84MWnTzDoCxDPwVbYkVTj0mxJhWRoMX9a5yUhA-YApAyvdCCHdDJb3Q0aONP8rWCNpHO-gUCFFtkJ0DwxWeE9weoraDq4WxYZ-70fIrn8lf6lA0DtawoqjQeiihe7DNXss5WmMKDCKmPB4t0c2gUG4t-xp0YbVrGZtQVCDi9xPenRP4oMhuObI-WLdcGeGqYa17Is_lWMsJCpbvGldLLiIvZ5TlBB2Aibf4zrzYxQ-oz5k1LjWu",
-    hostedUrl: "https://syncro-board.vercel.app",
-    repoUrl: "https://github.com/sadaqat14736/syncro-board",
+    hostedUrl: "https://eleken-88tjdzfkd-sadaqat-alis-projects-bc8ad5b2.vercel.app/",
+    repoUrl: "https://github.com/sadaqat14736/Eleken-web.git",
   },
   {
     title: "Blog-App",
@@ -96,4 +96,3 @@ export const projects = [
   },
 ];
 
- 

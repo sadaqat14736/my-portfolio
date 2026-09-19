@@ -29,14 +29,22 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
       const res = await axios.post(
-        "https://my-portfolio-production-323f.up.railway.app/api/send-email",
+        "https://formspree.io/f/moevvgdn",
         formData,
+        {
+          headers: {
+            Accept: "application/json",
+          },
+        }
       );
 
-      alert(res.data.message);
+      console.log("Formspree response:", res.data);
+
+      alert("Message sent successfully!");
 
       setFormData({
         name: "",
@@ -44,11 +52,22 @@ const Contact = () => {
         message: "",
       });
     } catch (error) {
-      console.error(error);
+      console.error(
+        "Formspree error:",
+        error.response?.data || error
+      );
 
-      alert(error.response?.data?.message || "Failed to send email.");
+      alert(
+        error.response?.data?.errors?.[0]?.message ||
+        "Failed to send message."
+      );
+    } finally {
+      setLoading(false);
     }
   };
+
+
+
   return (
     <motion.section
       className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start"

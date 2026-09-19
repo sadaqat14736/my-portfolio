@@ -1,4 +1,4 @@
-import nodemailer from "nodemailer"
+import nodemailer from "nodemailer";
 
 export const sendEmail = async (req, res) => {
   try {
@@ -14,9 +14,9 @@ export const sendEmail = async (req, res) => {
 
     // Transporter
     const transporter = nodemailer.createTransport({
-       host: "smtp.gmail.com",
-  port: 465,
-  secure: true,
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
@@ -27,7 +27,7 @@ export const sendEmail = async (req, res) => {
     const mailOptions = {
       from: `"${name}" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_USER,
-        replyTo: email,
+      replyTo: email,
       subject: `New Portfolio Contact from ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; padding:20px;">
@@ -50,9 +50,8 @@ export const sendEmail = async (req, res) => {
       success: true,
       message: "Email sent successfully!",
     });
-
   } catch (error) {
-    console.error(error);
+    console.error("Error sending email:", error);
 
     return res.status(500).json({
       success: false,

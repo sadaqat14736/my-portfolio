@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { personalDetails } from "../../Constants/data";
-import axios from "axios";
 import {
   fadeIn,
   slideLeft,
@@ -14,6 +13,7 @@ import {
 
 const Contact = () => {
   const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState({ type: null, message: "" });
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -30,47 +30,57 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setStatus({ type: null, message: "" });
 
     try {
-      const res = await axios.post(
-        "https://formspree.io/f/moevvgdn",
-        formData,
-        {
-          headers: {
-            Accept: "application/json",
-          },
-        }
-      );
-
-      console.log("Formspree response:", res.data);
-
-      alert("Message sent successfully!");
-
-      setFormData({
-        name: "",
-        email: "",
-        message: "",
+      const response = await fetch("https://formspree.io/f/moevvgdn", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          _subject: `Portfolio Message from ${formData.name}`,
+          _replyto: formData.email,
+        }),
       });
-    } catch (error) {
-      console.error(
-        "Formspree error:",
-        error.response?.data || error
-      );
 
-      alert(
-        error.response?.data?.errors?.[0]?.message ||
-        "Failed to send message."
-      );
+      if (response.ok) {
+        setStatus({
+          type: "success",
+          message: "Transmission received! I will get back to you shortly.",
+        });
+        setFormData({
+          name: "",
+          email: "",
+          message: "",
+        });
+      } else {
+        const errorData = await response.json().catch(() => ({}));
+        setStatus({
+          type: "error",
+          message:
+            errorData?.errors?.[0]?.message ||
+            "Failed to send transmission. Please try again.",
+        });
+      }
+    } catch (error) {
+      console.error("Formspree submission error:", error);
+      setStatus({
+        type: "error",
+        message: "Network error. Please check your connection and try again.",
+      });
     } finally {
       setLoading(false);
     }
   };
 
-
-
   return (
     <motion.section
-      className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start"
+      className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mb-24"
       id="contact"
       initial="hidden"
       whileInView="show"
@@ -107,9 +117,12 @@ const Contact = () => {
               <p className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">
                 Email
               </p>
-              <p className="font-body-lg text-body-lg text-on-surface font-semibold">
+              <a
+                href={`mailto:${personalDetails.email}`}
+                className="font-body-lg text-body-lg text-on-surface font-semibold hover:text-primary transition-colors"
+              >
                 {personalDetails.email}
-              </p>
+              </a>
             </div>
           </motion.div>
           <motion.div
@@ -135,7 +148,7 @@ const Contact = () => {
 
       {/* Right - Form */}
       <motion.div
-        className="glass-card p-8 rounded-2xl border border-white/10 shadow-2xl"
+        className="glass-card p-6 sm:p-8 rounded-2xl border border-white/10 shadow-2xl"
         variants={slideRight}
       >
         <motion.form
@@ -143,12 +156,32 @@ const Contact = () => {
           className="space-y-6"
           variants={staggerContainer}
         >
+          {status.message && (
+            <motion.div
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              className={`p-4 rounded-xl text-sm flex items-center gap-3 border ${status.type === "success"
+                ? "bg-secondary/10 border-secondary/30 text-secondary"
+                : "bg-tertiary-container/20 border-tertiary/30 text-tertiary"
+                }`}
+            >
+              <span className="material-symbols-outlined text-lg">
+                {status.type === "success" ? "check_circle" : "error"}
+              </span>
+              <span className="font-medium">{status.message}</span>
+            </motion.div>
+          )}
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <motion.div className="space-y-2" variants={staggerItem}>
-              <label className="font-label-sm text-label-sm text-on-surface-variant">
+              <label
+                htmlFor="contact-name"
+                className="font-label-sm text-label-sm text-on-surface-variant"
+              >
                 NAME
               </label>
               <input
+                id="contact-name"
                 name="name"
                 value={formData.name}
                 onChange={(e) => handleChange(e, "name")}
@@ -159,10 +192,14 @@ const Contact = () => {
               />
             </motion.div>
             <motion.div className="space-y-2" variants={staggerItem}>
-              <label className="font-label-sm text-label-sm text-on-surface-variant">
+              <label
+                htmlFor="contact-email"
+                className="font-label-sm text-label-sm text-on-surface-variant"
+              >
                 EMAIL
               </label>
               <input
+                id="contact-email"
                 name="email"
                 value={formData.email}
                 onChange={(e) => handleChange(e, "email")}
@@ -175,15 +212,19 @@ const Contact = () => {
           </div>
 
           <motion.div className="space-y-2" variants={staggerItem}>
-            <label className="font-label-sm text-label-sm text-on-surface-variant">
+            <label
+              htmlFor="contact-message"
+              className="font-label-sm text-label-sm text-on-surface-variant"
+            >
               MESSAGE
             </label>
             <textarea
+              id="contact-message"
               name="message"
               value={formData.message}
               onChange={(e) => handleChange(e, "message")}
               className="w-full bg-surface-container-lowest border border-white/10 rounded-lg px-4 py-3 text-on-surface focus:outline-none focus:border-primary transition-colors placeholder:text-outline-variant resize-none"
-              placeholder="Tell me about your project or ....."
+              placeholder="Tell me about your project or inquiry..."
               rows="4"
               required
             ></textarea>
@@ -192,12 +233,12 @@ const Contact = () => {
           <motion.button
             type="submit"
             disabled={loading}
-            className="w-full py-4 bg-primary text-on-primary font-label-md text-label-md rounded-lg hover:brightness-110 transition-all flex items-center justify-center gap-2 group cursor-pointer"
+            className="w-full py-4 bg-primary text-on-primary font-label-md text-label-md rounded-lg hover:brightness-110 disabled:opacity-50 transition-all flex items-center justify-center gap-2 group cursor-pointer"
             variants={staggerItem}
             whileHover={hoverButton}
             whileTap={tapButton}
           >
-            Send Transmission
+            {loading ? "Transmitting..." : "Send Transmission"}
             <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">
               send
             </span>

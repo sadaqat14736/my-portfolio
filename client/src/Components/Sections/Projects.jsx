@@ -26,7 +26,7 @@ const Projects = () => {
       </motion.div>
 
       <motion.div
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter"
         variants={staggerContainer}
         initial="hidden"
         whileInView="show"
@@ -41,7 +41,7 @@ const Projects = () => {
           >
             <div className="aspect-video relative overflow-hidden group">
               <img
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                 alt={project.title}
                 src={project.img}
               />
@@ -51,7 +51,7 @@ const Projects = () => {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={`Visit ${project.title} live demo`}
-                  className="p-2 bg-primary rounded-full text-on-primary"
+                  className="p-2.5 bg-primary rounded-full text-on-primary shadow-lg"
                   whileHover={hoverButton}
                   whileTap={tapButton}
                 >
@@ -62,7 +62,7 @@ const Projects = () => {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={`View ${project.title} repository`}
-                  className="p-2 bg-surface-container-highest rounded-full text-on-surface border border-white/10"
+                  className="p-2.5 bg-surface-container-highest rounded-full text-on-surface border border-white/10 shadow-lg"
                   whileHover={hoverButton}
                   whileTap={tapButton}
                 >
@@ -84,9 +84,30 @@ const Projects = () => {
                   </span>
                 ))}
               </div>
-              <p className="font-body-md text-body-md text-on-surface-variant line-clamp-2">
+              <p className="font-body-md text-body-md text-on-surface-variant line-clamp-3 mb-4">
                 {project.desc}
               </p>
+              
+              <div className="mt-auto pt-4 flex items-center justify-between border-t border-white/10">
+                <a
+                  href={project.hostedUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline transition-all"
+                >
+                  <span className="material-symbols-outlined text-base">open_in_new</span>
+                  Live Demo
+                </a>
+                <a
+                  href={project.repoUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-medium text-on-surface-variant hover:text-on-surface transition-colors"
+                >
+                  <span className="material-symbols-outlined text-base">code</span>
+                  Source Code
+                </a>
+              </div>
             </div>
           </motion.div>
         ))}

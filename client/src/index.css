@@ -90,6 +90,10 @@
   --text-label-md--line-height: 20px;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: #051424;
     color: #d5e4fa;

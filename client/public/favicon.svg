@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <rect width="100" height="100" rx="50" fill="#051424"/>
+  <circle cx="50" cy="50" r="45" stroke="#8083ff" stroke-width="3" fill="none" opacity="0.4"/>
+  <text x="50%" y="58%" dominant-baseline="middle" text-anchor="middle" fill="#c0c1ff" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="36" letter-spacing="2">SA</text>
+</svg>

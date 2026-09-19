@@ -11,21 +11,6 @@ function App() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const anchors = document.querySelectorAll('a[href^="#"]');
-    const handleClick = function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute("href"));
-      if (target) {
-        target.scrollIntoView({
-          behavior: "smooth",
-        });
-      }
-    };
-
-    anchors.forEach((anchor) => {
-      anchor.addEventListener("click", handleClick);
-    });
-
     const cards = document.querySelectorAll(".glow-hover");
     const handleMove = (e) => {
       const rect = e.currentTarget.getBoundingClientRect();
@@ -40,9 +25,6 @@ function App() {
     });
 
     return () => {
-      anchors.forEach((anchor) => {
-        anchor.removeEventListener("click", handleClick);
-      });
       cards.forEach((card) => {
         card.removeEventListener("mousemove", handleMove);
       });

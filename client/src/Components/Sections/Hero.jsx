@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { personalDetails } from "../../Constants/data";
-import resume from "..//../assets//images/resume.pdf";
+import resume from "../../assets/images/resume.pdf";
 import {
   fadeInScale,
   staggerContainer,
@@ -19,14 +19,19 @@ const Hero = () => {
       variants={staggerContainer}
     >
       <motion.div
-        className="lg:col-span-12 glass-card p-8 rounded-xl flex flex-col md:flex-row gap-8 items-center"
+        className="lg:col-span-12 glass-card p-5 sm:p-8 rounded-xl flex flex-col md:flex-row-reverse gap-8 md:gap-10 items-center"
         variants={fadeInScale}
       >
+        {/* Profile Image */}
         <motion.div
-          className="w-48 h-48 rounded-xl overflow-hidden flex-shrink-0 border-2 border-primary/20 shadow-xl"
+          className="w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 rounded-2xl overflow-hidden flex-shrink-0 border-2 border-primary/20 shadow-xl"
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1, y: [0, -3, 0] }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+          transition={{
+            duration: 0.8,
+            ease: [0.22, 1, 0.36, 1],
+            delay: 0.15,
+          }}
         >
           <img
             className="w-full h-full object-cover"
@@ -34,19 +39,25 @@ const Hero = () => {
             src={personalDetails.profileImage}
           />
         </motion.div>
+
+        {/* Personal Details */}
         <motion.div
-          className="flex flex-col justify-center text-center md:text-left"
+          className="flex flex-col justify-center text-center md:text-left flex-1"
           variants={staggerContainer}
         >
           <motion.div
             className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 text-primary rounded-full w-fit mx-auto md:mx-0 mb-4 border border-primary/20"
             variants={staggerItem}
           >
-            <span className="material-symbols-outlined text-sm">code</span>
+            <span className="material-symbols-outlined text-sm">
+              code
+            </span>
+
             <span className="font-label-sm text-label-sm">
               {personalDetails.role}
             </span>
           </motion.div>
+
           <motion.h1
             className="font-display-lg text-headline-lg text-on-surface mb-2 tracking-tighter uppercase"
             variants={staggerItem}
@@ -60,6 +71,7 @@ const Hero = () => {
           >
             {personalDetails.bio}
           </motion.p>
+
           <motion.div
             className="flex flex-wrap gap-4 justify-center md:justify-start"
             variants={staggerContainer}
@@ -75,8 +87,10 @@ const Hero = () => {
               <span className="material-symbols-outlined group-hover:-translate-y-1 transition-transform">
                 download
               </span>
+
               Download CV
             </motion.a>
+
             <motion.a
               className="px-8 py-3 border border-outline-variant text-on-surface font-label-md text-label-md rounded-lg hover:bg-white/5 transition-all active:scale-95 flex items-center gap-2"
               href="#projects"
@@ -84,7 +98,10 @@ const Hero = () => {
               whileHover={hoverButton}
               whileTap={tapButton}
             >
-              <span className="material-symbols-outlined">rocket_launch</span>
+              <span className="material-symbols-outlined">
+                rocket_launch
+              </span>
+
               View Projects
             </motion.a>
           </motion.div>

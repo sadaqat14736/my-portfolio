@@ -85,7 +85,7 @@ export const projects = [
     tags: ["HTML", "CSS", "JavaScript"],
     desc: "A website inspired by Eleken, featuring a modern layout, interactive sections, and a clean user experience.",
     img: "https://i.ibb.co/XkLy1jLW/Screenshot-2026-09-19-181315.png",
-    hostedUrl: "https://eleken-88tjdzfkd-sadaqat-alis-projects-bc8ad5b2.vercel.app/",
+    hostedUrl: "https://eleken-web.vercel.app/",
     repoUrl: "https://github.com/sadaqat14736/Eleken-web.git",
   },
   // {

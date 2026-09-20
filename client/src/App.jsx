@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import "./index.css";
 import Home from "./Pages/Home";
+import CustomCursor from "./Components/Ui/CustomCursor";
 
 function App() {
   const [isLoading, setIsLoading] = useState(() => {
@@ -11,23 +12,19 @@ function App() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const cards = document.querySelectorAll(".glow-hover");
-    const handleMove = (e) => {
-      const rect = e.currentTarget.getBoundingClientRect();
+    const handlePointerMove = (e) => {
+      const card = e.target.closest(".glow-hover");
+      if (!card) return;
+      const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      e.currentTarget.style.setProperty("--mouse-x", `${x}px`);
-      e.currentTarget.style.setProperty("--mouse-y", `${y}px`);
+      card.style.setProperty("--mouse-x", `${x}px`);
+      card.style.setProperty("--mouse-y", `${y}px`);
     };
 
-    cards.forEach((card) => {
-      card.addEventListener("mousemove", handleMove);
-    });
-
+    window.addEventListener("pointermove", handlePointerMove, { passive: true });
     return () => {
-      cards.forEach((card) => {
-        card.removeEventListener("mousemove", handleMove);
-      });
+      window.removeEventListener("pointermove", handlePointerMove);
     };
   }, []);
 
@@ -61,7 +58,7 @@ function App() {
         {isLoading && (
           <motion.div
             key="loader"
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-[radial-gradient(circle_at_top,_rgba(110,96,255,0.12),_transparent_55%),rgba(4,8,20,0.95)] backdrop-blur-sm"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-[#040814] bg-[radial-gradient(circle_at_top,_rgba(110,96,255,0.18),_transparent_65%)] pointer-events-auto"
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
@@ -97,6 +94,7 @@ function App() {
         )}
       </AnimatePresence>
 
+      <CustomCursor />
       <Home />
     </div>
   );

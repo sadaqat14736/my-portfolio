@@ -1,4 +1,3 @@
-import React from "react";
 
 const FormInput = ({ label, type = "text", placeholder, isTextArea = false, rows = 6, value, onChange, ...props }) => {
   const commonClasses = "w-full bg-surface-container-lowest/50 border border-outline-variant/30 rounded-xl px-5 py-3.5 text-on-surface focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all glass-morphism";

@@ -1,4 +1,3 @@
-import React from "react";
 
 const BentoCard = ({ children, className = "", as: Component = "div", ...props }) => {
   return (

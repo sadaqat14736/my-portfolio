@@ -1,4 +1,3 @@
-import React from "react";
 
 const TabButton = ({ label, id, active, onClick }) => {
   return (

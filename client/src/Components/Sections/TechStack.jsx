@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { techStackCategories } from "../../Constants/data";
 import { fadeIn, slideUp, staggerContainer } from "../../animations";
@@ -14,9 +13,12 @@ const TechStack = () => {
       variants={fadeIn}
     >
       <motion.div className="text-center mb-12" variants={fadeIn}>
-        <h2 className="font-headline-lg text-headline-lg text-on-surface">
+        <h2 className="font-headline-lg text-headline-lg text-on-surface mb-2">
           Core Technologies
         </h2>
+        <p className="font-body-md text-body-md text-on-surface-variant max-w-lg mx-auto">
+          Languages, frameworks, and tools powering my production applications.
+        </p>
       </motion.div>
 
       <motion.div

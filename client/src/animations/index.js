@@ -4,10 +4,9 @@ export const baseTransition = {
 };
 
 export const fadeIn = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    y: 0,
     transition: baseTransition,
   },
 };

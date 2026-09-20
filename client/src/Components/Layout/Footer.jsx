@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { personalDetails } from "../../Constants/data";
 import { fadeIn } from "../../animations";

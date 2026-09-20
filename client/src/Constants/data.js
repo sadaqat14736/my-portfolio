@@ -65,7 +65,7 @@ export const techStackCategories = [
 export const projects = [
   {
     title: "Matrimonial App",
-    tags: ["React","Tailwind","Node.js(Socket io)", "MongoDB", ],
+    tags: ["React","Tailwind","Node.js(socket.io)", "MongoDB", ],
     desc: "A full-stack matrimonial platform with profile matching, interests, real-time chat, notifications, and secure authentication",
     img: "https://i.ibb.co/hR5bn3dJ/Screenshot-2026-09-19-183150.png",
     hostedUrl: "https://lnkd.in/p/dzbsEpTE",

@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { personalDetails } from "../../Constants/data";
 import resume from "../../assets/images/resume.pdf";
@@ -15,7 +14,8 @@ const Hero = () => {
     <motion.section
       className="grid grid-cols-1 lg:grid-cols-12 gap-gutter mb-20"
       initial="hidden"
-      animate="show"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.15 }}
       variants={staggerContainer}
     >
       <motion.div
@@ -35,8 +35,12 @@ const Hero = () => {
         >
           <img
             className="w-full h-full object-cover"
-            alt={personalDetails.name}
+            alt={`${personalDetails.name} - ${personalDetails.role}`}
             src={personalDetails.profileImage}
+            width={288}
+            height={288}
+            loading="eager"
+            decoding="async"
           />
         </motion.div>
 

@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { projects } from "../../Constants/data";
 import { fadeIn, slideUp, staggerContainer, hoverButton, tapButton } from "../../animations";
@@ -40,16 +39,29 @@ const Projects = () => {
             whileHover={{ y: -6, scale: 1.01, transition: { duration: 0.2 } }}
           >
             <div className="aspect-video relative overflow-hidden group">
-              <img
-                className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                alt={project.title}
-                src={project.img}
-              />
-              <div className="absolute inset-0 bg-surface/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+              <a
+                href={project.hostedUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                tabIndex={-1}
+                aria-hidden="true"
+                className="block w-full h-full"
+              >
+                <img
+                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  alt={project.title}
+                  src={project.img}
+                  loading="lazy"
+                  decoding="async"
+                  width={600}
+                  height={338}
+                />
+              </a>
+              <div className="absolute inset-0 bg-surface/75 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 focus-within:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4 pointer-events-none group-hover:pointer-events-auto focus-within:pointer-events-auto">
                 <motion.a
                   href={project.hostedUrl}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   aria-label={`Visit ${project.title} live demo`}
                   className="p-2.5 bg-primary rounded-full text-on-primary shadow-lg"
                   whileHover={hoverButton}
@@ -60,7 +72,7 @@ const Projects = () => {
                 <motion.a
                   href={project.repoUrl}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   aria-label={`View ${project.title} repository`}
                   className="p-2.5 bg-surface-container-highest rounded-full text-on-surface border border-white/10 shadow-lg"
                   whileHover={hoverButton}

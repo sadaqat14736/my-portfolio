@@ -1,4 +1,4 @@
-import profileImage from "../assets/images/profile1.jpg";
+import profileImage from "../assets/images/profile.png";
 
 
 export const personalDetails = {
